@@ -4,52 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        .casa{
-            height: 150px;
-            width: 150px;
-            border: 1px solid black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.6em;
-            color: black;
-        }
-        .peao{
-            border-radius: 50%;
-            background-color: rgb(97, 166, 255);
-            width: 100px;
-            height: 100px;
-            font-size: 1.6em;
-            text-align: center;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>  
-    <div class="casa" id="casa1"> 1
+    <header>
+    <p class="turno-contador">
+        Vez do: 
+    </p>      
+    </header>
+    <section class="local-casas" id="local-casas-azul">
+        <div class="casa" id="casa1"> 1
         
         
-    </div>
-
-    <div class="casa" id="casa2">2
-        
-    </div>
-        
-    <div class="casa" id="casa3"> 3
-        
-    </div>
-
-    <div class="casa" id="casa4"> 4
-        <div class="peao" onclick="esperando(event)" >
-            '-'
         </div>
-    </div>
-
-    <div class="casa" id="casa5"> Nulo
+        <div class="casa" id="casa2">2
         
-    </div>
+        </div>
+        
+        <div class="casa" id="casa3"> 3
+        
+        </div>
+        <div class="casa" id="casa4"> 4
+            <div class="peao" onclick="esperando(event)" >
+                '-'
+            </div>
+        </div>
+        <div class="casa" id="casa5"> 5
+        
+        </div>
+        <div class="casa" id="casa6"> 6
+        
+        </div>
+        <div class="casa" id="casa7"> 
+        
+        </div>
+    </section>
+
+    
 
     <script>
 

@@ -1,0 +1,35 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.local-casas{
+    background-color: beige;
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
+    height: 90vh;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+}
+.casa{
+    background-color: white;
+    height: 150px;
+    width: 150px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6em;
+    color: black;
+}
+.peao{
+    border-radius: 50%;
+    background-color: rgb(97, 166, 255);
+    width: 100px;
+    height: 100px;
+    font-size: 1.6em;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
