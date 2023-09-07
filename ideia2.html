@@ -30,21 +30,21 @@
 <body>  
     <div class="casa" id="casa1"> 1
         
-        <div class="peao" onclick="esperando(event)" >
-            '-'
-        </div>
+        
     </div>
 
     <div class="casa" id="casa2">2
-
+        
     </div>
-    
+        
     <div class="casa" id="casa3"> 3
-
+        
     </div>
 
     <div class="casa" id="casa4"> 4
-
+        <div class="peao" onclick="esperando(event)" >
+            '-'
+        </div>
     </div>
 
     <script>
@@ -53,23 +53,27 @@
         console.log('O HTML TEM ' + todasCasas.length + ' CASAS')
         
 
-        function selecionar(peaoEvento=0, casaSeguinteEvento=0, casaAnteriorEvento=0){
+        // function selecionar(peaoEvento=0, casaSeguinteEvento=0, casaAnteriorEvento=0){
             
-            console.log('selecionar funcionando')
-            console.log(peaoEvento)
-            casaSeguinteEvento.appendChild(peaoEvento)
-            casaSeguinteEvento.style.backgroundColor = 'white'
-            if(casaAnteriorEvento > 0){
-                casaAnteriorEvento.style.backgroundColor = 'white'
-            }
+        //     console.log('selecionar funcionando')
+        //     console.log(peaoEvento)
+        //     casaSeguinteEvento.appendChild(peaoEvento)
+        //     casaSeguinteEvento.style.backgroundColor = 'white'
+        //     if(casaAnteriorEvento > 0){
+        //         casaAnteriorEvento.style.backgroundColor = 'white'
+        //     }
             
-            casaAnteriorEvento.appendChild(peaoEvento)
+        //     casaAnteriorEvento.appendChild(peaoEvento)
             
 
-            peaoEvento.setAttribute('onclick', 'esperando(event)')
+        //     peaoEvento.setAttribute('onclick', 'esperando(event)')
 
             
-        }
+        // }
+
+            
+
+
         
         function esperando(event){
 
@@ -96,36 +100,70 @@
                 
                 console.log(numArrayAnterior + ' teste')
                 
-                
-
-                if(numArrayAnterior > 0){
-                    console.log('true')
-                    casaSeguinte.style.backgroundColor = 'blue' //ADICIONA COR À CASA SEGUINTE, PARA O JOGADOR SABER ONDE O PEAO PODE ANDAR
+                //VERIFICA SE CASA SEGUINTE E ANTERIOR EXISTEM, E BASEADO NISSO ELE PINTA A CASA DE UMA COR PARA O JOGADOR SABER PARA QUAL CASA O PEAO PODE SE MUDAR
+                if(numArraySeguinte < todasCasas.length && numArrayAnterior >= 1 && numArrayAnterior < todasCasas.length ){
+                    casaSeguinte.style.backgroundColor = 'blue'
                     casaAnterior.style.backgroundColor = 'blue'
+                    console.log('true')
+
+                    // Já que casa seguinte e a aanterior existem, aidciona um evento de clique que muda o peão de lugar em ambas
                     casaAnterior.addEventListener('click', function(){
-                        selecionar(peao, casaSeguinte, casaAnterior)
+                        //ao clicar na casa mudar peão para casa clicada
+                        selecionarCasa()
                     })
                     casaSeguinte.addEventListener('click', function(){
-                    selecionar(peao, casaSeguinte)
-
-                })   
+                        selecionarCasa()
+                    })
                 }
-                else if(numArraySeguinte < todasCasas.length){
-                    console.log('False')
-                    casaSeguinte.style.backgroundColor = 'blue' //ADICIONA COR À CASA SEGUINTE, PARA O JOGADOR SABER ONDE O PEAO PODE ANDAR
-                    casaSeguinte.addEventListener('click', function(){
-                    console.log("peão " + peao)
-                    selecionar(peao, casaSeguinte, casaAnterior)
-
-                })
+                else{
+                    console.log('false')
+                    if(numArraySeguinte < todasCasas.length){
+                        console.log('casa seguinte existe')
+                        casaSeguinte.style.backgroundColor = 'blue'
+                        casaSeguinte.addEventListener('click', function(){
+                        selecionarCasa()
+                    })
+                    }
+                    else if(numArrayAnterior < todasCasas.length && numArrayAnterior >= 1){
+                        console.log('casa seguinte não existe')
+                        casaAnterior.style.backgroundColor = 'blue'
+                        casaAnterior.addEventListener('click', function(){
+                        //ao clicar na casa mudar peão para casa clicada
+                        selecionarCasa()
+                    })
+                    }
                 }
-                else if(numArraySeguinte > todasCasas.length){
-                    console.log('maior')
+                console.log('acabou')
+                
 
-                }
+                // if(numArrayAnterior > 0){
+                //     console.log('true')
+                //     casaSeguinte.style.backgroundColor = 'blue' //ADICIONA COR À CASA SEGUINTE, PARA O JOGADOR SABER ONDE O PEAO PODE ANDAR
+                //     casaAnterior.style.backgroundColor = 'blue'
+                //     casaAnterior.addEventListener('click', function(){
+                //         selecionar(peao, casaSeguinte, casaAnterior)
+                //     })
+                //     casaSeguinte.addEventListener('click', function(){
+                //     selecionar(peao, casaSeguinte)
+
+                // })   
+                // }
+                // else if(numArraySeguinte < todasCasas.length){
+                //     console.log('False')
+                //     casaSeguinte.style.backgroundColor = 'blue' //ADICIONA COR À CASA SEGUINTE, PARA O JOGADOR SABER ONDE O PEAO PODE ANDAR
+                //     casaSeguinte.addEventListener('click', function(){
+                //     console.log("peão " + peao)
+                //     selecionar(peao, casaSeguinte, casaAnterior)
+
+                // })
+                // }
+                // else if(numArraySeguinte > todasCasas.length){
+                //     console.log('maior')
+                //     casaAnterior.style.backgroundColor = 'blue'
+                // }
 
 
-                peao.setAttribute('onclick', '')
+                
 
                 
 
