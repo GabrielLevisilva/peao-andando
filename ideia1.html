@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .casa{
+            height: 150px;
+            width: 150px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .peao{
+            border-radius: 50%;
+            background-color: black;
+            width: 100px;
+            height: 100px;
+            font-size: 1.6em;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>  
+    <div class="casa" id="casa1">
+        
+        <div class="peao casa1" onclick="mover(event)" >
+            :|
+        </div>
+    </div>
+
+    <div class="casa" id="casa2">
+
+    </div>
+
+    <script>
+
+        function mover(event){
+
+            let btn = event.target
+            let btnPai = btn.parentNode
+
+            if(btn.classList.contains('casa1')){
+                const casa2 = document.querySelector('#casa2')
+                btn.setAttribute('class', 'peao casa2')
+                casa2.appendChild(btn)
+                
+            }
+            else if(btn.classList.contains('casa2')){
+                const casa1 = document.querySelector('#casa1')
+                btn.setAttribute('class', 'peao casa1')
+                casa1.appendChild(btn)
+            }
+
+           
+
+            
+
+
+        }
+
+
+    </script>
+    
+</body>
+</html>
