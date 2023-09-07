@@ -47,37 +47,60 @@
         </div>
     </div>
 
+    <div class="casa" id="casa5"> Nulo
+        
+    </div>
+
     <script>
 
         const todasCasas = document.querySelectorAll('.casa')
         console.log('O HTML TEM ' + todasCasas.length + ' CASAS')
-        
+        // reset
+        let peao = 0
+        let casaAnterior = 0
+        let casaSeguinte = 0
+        // ---------------------------------
 
-        // function selecionar(peaoEvento=0, casaSeguinteEvento=0, casaAnteriorEvento=0){
-            
-        //     console.log('selecionar funcionando')
-        //     console.log(peaoEvento)
-        //     casaSeguinteEvento.appendChild(peaoEvento)
-        //     casaSeguinteEvento.style.backgroundColor = 'white'
-        //     if(casaAnteriorEvento > 0){
-        //         casaAnteriorEvento.style.backgroundColor = 'white'
-        //     }
-            
-        //     casaAnteriorEvento.appendChild(peaoEvento)
-            
+        //TODO: TROCAR TODOS OS ADDEVENTLISTENER PARA ONCLICK='FUNCTION'
 
-        //     peaoEvento.setAttribute('onclick', 'esperando(event)')
+            function selecionarCasa(peaoEvento, casaAnteriorEvento=0, casaSeguinteEvento=0){
 
-            
-        // }
+                if(casaAnteriorEvento != 0 && casaSeguinteEvento != 0){
+                    console.log('ambas casas existem')
+                    // casaAnteriorEvento.removeEventListener('click', function(){})
+                    // casaSeguinteEvento.removeEventListener('click', function(){})
+                    casaAnteriorEvento.style.backgroundColor = 'white'
+                    casaSeguinteEvento.style.backgroundColor = 'white'
+                }
+                else{
+                    if(casaAnteriorEvento != 0){
+                        console.log('Apenas a casa anterior Existe')
+                        casaAnteriorEvento.style.backgroundColor = 'white'
+                        // casaAnteriorEvento.removeEventListener('click', function(){})
+                        casaAnteriorEvento.appendChild(peaoEvento)
+                    }
+                    else if(casaSeguinteEvento !=0){
 
-            
+                        console.log('Apenas a casa seguinte existe')
+                        casaSeguinteEvento.style.backgroundColor = 'white'
+                        // casaSeguinteEvento.removeEventListener('click', function(){})
+                        casaSeguinteEvento.appendChild(peaoEvento)
+                    }
+                }
+
+                for(let c = 0; c < todasCasas.length; c++){
+                    todasCasas[c].removeAttribute('onclick')
+                    todasCasas[c].style.backgroundColor = 'white'
+                }
+                
+
+            }
 
 
         
         function esperando(event){
 
-            let peao = event.target //pega o peao
+            peao = event.target //pega o peao
             let peaoPai = peao.parentNode //pega a casa em que o peao está
 
             if(peaoPai.classList.contains('casa')){ //se na casa em que o peao está conter a class .casa = true
@@ -93,8 +116,8 @@
                 //PEGA CASA ANTEIOR E A CASA SEGUINTE
                 let numArraySeguinte = numArray + 1
                 let numArrayAnterior = numArray - 1
-                let casaSeguinte = document.getElementById('casa' + numArraySeguinte) 
-                let casaAnterior = document.getElementById('casa' + numArrayAnterior) 
+                casaSeguinte = document.getElementById('casa' + numArraySeguinte) 
+                casaAnterior = document.getElementById('casa' + numArrayAnterior) 
 
 
                 
@@ -107,69 +130,29 @@
                     console.log('true')
 
                     // Já que casa seguinte e a aanterior existem, aidciona um evento de clique que muda o peão de lugar em ambas
-                    casaAnterior.addEventListener('click', function(){
-                        //ao clicar na casa mudar peão para casa clicada
-                        selecionarCasa()
-                    })
-                    casaSeguinte.addEventListener('click', function(){
-                        selecionarCasa()
-                    })
+                    casaAnterior.setAttribute('onclick', 'selecionarCasa(peao, casaAnterior, 0)')
+                        
+                    
+                    casaSeguinte.setAttribute('onclick', 'selecionarCasa(peao, 0 , casaSeguinte)')
+                    
                 }
                 else{
                     console.log('false')
                     if(numArraySeguinte < todasCasas.length){
                         console.log('casa seguinte existe')
                         casaSeguinte.style.backgroundColor = 'blue'
-                        casaSeguinte.addEventListener('click', function(){
-                        selecionarCasa()
-                    })
+                        casaSeguinte.setAttribute('onclick', 'selecionarCasa(peao, 0, casaSeguinte)')
+
                     }
                     else if(numArrayAnterior < todasCasas.length && numArrayAnterior >= 1){
                         console.log('casa seguinte não existe')
                         casaAnterior.style.backgroundColor = 'blue'
-                        casaAnterior.addEventListener('click', function(){
-                        //ao clicar na casa mudar peão para casa clicada
-                        selecionarCasa()
-                    })
+                        casaAnterior.setAttribute('onclick', 'selecionarCasa(peao, casaAnterior, 0)')
+
                     }
                 }
                 console.log('acabou')
                 
-
-                // if(numArrayAnterior > 0){
-                //     console.log('true')
-                //     casaSeguinte.style.backgroundColor = 'blue' //ADICIONA COR À CASA SEGUINTE, PARA O JOGADOR SABER ONDE O PEAO PODE ANDAR
-                //     casaAnterior.style.backgroundColor = 'blue'
-                //     casaAnterior.addEventListener('click', function(){
-                //         selecionar(peao, casaSeguinte, casaAnterior)
-                //     })
-                //     casaSeguinte.addEventListener('click', function(){
-                //     selecionar(peao, casaSeguinte)
-
-                // })   
-                // }
-                // else if(numArraySeguinte < todasCasas.length){
-                //     console.log('False')
-                //     casaSeguinte.style.backgroundColor = 'blue' //ADICIONA COR À CASA SEGUINTE, PARA O JOGADOR SABER ONDE O PEAO PODE ANDAR
-                //     casaSeguinte.addEventListener('click', function(){
-                //     console.log("peão " + peao)
-                //     selecionar(peao, casaSeguinte, casaAnterior)
-
-                // })
-                // }
-                // else if(numArraySeguinte > todasCasas.length){
-                //     console.log('maior')
-                //     casaAnterior.style.backgroundColor = 'blue'
-                // }
-
-
-                
-
-                
-
-                
-                
-
 
             }
 
